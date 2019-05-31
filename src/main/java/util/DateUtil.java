@@ -30,7 +30,7 @@ public class DateUtil {
 
     public static Date strToDate(final String strDate, final String pattern) {
         try {
-            final var dateFormat = new SimpleDateFormat(pattern);
+            final SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
             return dateFormat.parse(strDate);
         } catch (ParseException e) {
             logger.error("Error on date parser: " + strDate, e);
@@ -45,7 +45,7 @@ public class DateUtil {
 
     public static String dateToStr(final Date date, final String pattern) {
         if (date != null) {
-            final var df = new SimpleDateFormat(pattern);
+            final SimpleDateFormat df = new SimpleDateFormat(pattern);
             return df.format(date);
         }
 
@@ -54,14 +54,14 @@ public class DateUtil {
 
     public static String getDatePlustDay(final String dateStr, final Integer days) {
         if (days == null) return "0";
-        var pattern = DateTimeFormatter.ofPattern(OUTPUT_SIMPLE_PATTERN);
-        var localDate = LocalDate.parse(dateStr, pattern).plusDays(days);
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern(OUTPUT_SIMPLE_PATTERN);
+        LocalDate localDate = LocalDate.parse(dateStr, pattern).plusDays(days);
         return localDate.format(pattern);
     }
 
     public static String getDatePlustDay(final Date date, final Integer days) {
         if (days == null) return "0";
-        final var calendar = Calendar.getInstance();
+        final Calendar calendar = Calendar.getInstance();
 
         calendar.setTime(date);
         calendar.add(Calendar.DATE, days);
@@ -70,15 +70,15 @@ public class DateUtil {
     }
 
     public static String extractCalendarValue(final Date date, final Integer item) {
-        final var calendar = Calendar.getInstance();
+        final Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return Integer.toString(calendar.get(item));
     }
 
     public static boolean isValidYear(final Integer year) {
-        var isValid = false;
+        boolean isValid = false;
         try {
-            final var pattern = DateTimeFormatter.ofPattern(OUTPUT_SIMPLE_PATTERN);
+            final DateTimeFormatter pattern = DateTimeFormatter.ofPattern(OUTPUT_SIMPLE_PATTERN);
             LocalDate.parse("01/01/" + year, pattern);
             isValid = true;
         } catch (final DateTimeParseException e) {
@@ -96,11 +96,11 @@ public class DateUtil {
     }
 
     public static Long getIntervalInDays(final Date begin, final Date end) {
-        var calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         if(Objects.nonNull(begin) && Objects.nonNull(end)) {
             calendar.setTime(end);
-            var localBegin = Instant.ofEpochMilli(begin.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
-            var localEnd = Instant.ofEpochMilli(calendar.getTime().getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate localBegin = Instant.ofEpochMilli(begin.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate localEnd = Instant.ofEpochMilli(calendar.getTime().getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
             return ChronoUnit.DAYS.between(localBegin, localEnd);
         }
         return 0L;
