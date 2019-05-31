@@ -39,7 +39,7 @@ public class DateUtilTest {
         final LocalDate secondDate = LocalDate.parse(end, formatter);
 
         long interval = DateUtil.getIntervalInDays(firstDate, secondDate);
-        assertEquals(interval, 1);
+        assertEquals(1, interval);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class DateUtilTest {
         LocalDate secondDate = LocalDate.parse(end, formatter);
 
         long interval = DateUtil.getIntervalInDays(firstDate, secondDate);
-        assertEquals(interval, 3);
+        assertEquals(3, interval);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class DateUtilTest {
         String begin = "01/01/2019";
         String end = "02/01/2019";
         long interval = DateUtil.getIntervalInDays(formatter.parse(begin), formatter.parse(end));
-        assertEquals(interval, 1);
+        assertEquals(1, interval);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class DateUtilTest {
         String begin = "01/01/2019";
         String end = "04/01/2019";
         long interval = DateUtil.getIntervalInDays(formatter.parse(begin), formatter.parse(end));
-        assertEquals(interval, 3);
+        assertEquals(3, interval);
     }
 
 }
