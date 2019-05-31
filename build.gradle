@@ -1,9 +1,17 @@
+buildscript {
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+    }
+}
+
 plugins {
     id 'java'
 }
 
+apply plugin: 'com.github.dcendents.android-maven'
+
 group = 'com.github.thiagoematos'
-version = '1.2-SNAPSHOT'
+version = '1.4-SNAPSHOT'
 sourceCompatibility = '12'
 
 repositories {
