@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -71,6 +72,15 @@ public class DateUtilTest {
         String end = "04/01/2019";
         long interval = DateUtil.getIntervalInDays(formatter.parse(begin), formatter.parse(end));
         assertEquals(3, interval);
+    }
+
+    @Test
+    public void preventNullPointer() {
+        // When
+        Date date = DateUtil.strToDate(null);
+
+        // Then
+        assertNull(date);
     }
 
 }

@@ -29,6 +29,7 @@ public class DateUtil {
     }
 
     public static Date strToDate(final String strDate, final String pattern) {
+        if (strDate == null) return null;
         try {
             final SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
             return dateFormat.parse(strDate);
